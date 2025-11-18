@@ -82,3 +82,5 @@ WHERE id_pago = 16;
 --la verificacion para la ultima actividad 14
 SELECT * FROM Contratos 
 WHERE fecha_fin < '2024-01-01';
+
+--coret

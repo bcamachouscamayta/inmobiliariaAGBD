@@ -106,3 +106,5 @@ WHERE id_contrato IN (
 -- 2. Ahora sí, borramos los CONTRATOS viejos
 DELETE FROM Contratos
 WHERE fecha_fin < '2024-01-01';
+
+--ññññ

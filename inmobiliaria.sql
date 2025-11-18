@@ -139,3 +139,5 @@ INSERT INTO Pagos (id_contrato, fecha_pago, monto_pagado, medio_pago) VALUES
 (12, '2024-01-02', 190000.00, 'Efectivo'),
 (14, '2023-01-05', 300000.00, 'Transferencia'),
 (1, '2023-04-01', 1000.00, 'Efectivo');
+
+--corte
