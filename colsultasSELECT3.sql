@@ -23,7 +23,7 @@ SELECT
 FROM Contratos c
 JOIN Clientes cl ON c.id_cliente = cl.id_cliente
 JOIN Propiedades p ON c.id_propiedad = p.id_propiedad
-WHERE c.fecha_fin > CURDATE();
+WHERE c.fecha_fin > CURDATE(); --< se utiliza para mostrar la fecha actual ñññ
 
 
 -- 6. Mostrar los pagos realizados junto con cliente y dirección.
@@ -39,16 +39,18 @@ FROM Pagos pa
 JOIN Contratos co ON pa.id_contrato = co.id_contrato
 JOIN Clientes cl ON co.id_cliente = cl.id_cliente
 JOIN Propiedades p ON co.id_propiedad = p.id_propiedad
-ORDER BY pa.fecha_pago DESC;
+ORDER BY pa.fecha_pago DESC; --< ordena de mayor a menor ñññ
 
 -- 7. Mostrar los clientes Y los ambientes de las propiedades que alquilaron (> 3)
-SELECT DISTINCT
+SELECT 
     cl.id_cliente,
     cl.nombre,
     cl.apellido,
     cl.dni,
-    cl.email,
-    p.ambientes  -- <-- AQUÍ ESTÁ LA COLUMNA AÑADIDA
+    cl.telefono,   -- <-- Dato agregado
+    cl.email,      -- <-- Dato agregado
+    p.direccion,   -- <-- Agregué la dirección para identificar la casa
+    p.ambientes
 FROM Clientes cl
 JOIN Contratos co ON cl.id_cliente = co.id_cliente
 JOIN Propiedades p ON co.id_propiedad = p.id_propiedad
@@ -80,6 +82,7 @@ WHERE tipo = 'Departamento';
 
 -- 11. Cambiar el teléfono de un cliente específico.
 -- (Le cambiamos el teléfono al cliente número 1, Lucía García)
+
 UPDATE Clientes
 SET telefono = '11-9999-8888'
 WHERE id_cliente = 1;
@@ -96,14 +99,12 @@ DELETE FROM Pagos
 WHERE id_contrato IN (
     SELECT id_contrato FROM Contratos WHERE fecha_fin < '2024-01-01'
 );
-
---14. utilize estos dos para hacer la activida en referido a eliminar de tal a tal tabla en un punto
--- 1. Primero borramos los PAGOS asociados a esos contratos viejos
+--utilize estos dos para hacer la activida en referido a eliminar de tal a tal tabla en un punto
 DELETE FROM Pagos
 WHERE id_contrato IN (
     SELECT id_contrato FROM Contratos WHERE fecha_fin < '2024-01-01'
 );
--- 2. Ahora sí, borramos los CONTRATOS viejos
+
 DELETE FROM Contratos
 WHERE fecha_fin < '2024-01-01';
 

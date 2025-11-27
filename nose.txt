@@ -1,2 +1,83 @@
-ENGINE=InnoDB = ?
-USE inmobiliaria_db; = pide usar eos practicamnete
+SET FOREIGN_KEY_CHECKS = 0 / 1:
+
+    Qué hace: Apaga (0) o enciende (1) la "policía" que vigila las relaciones.
+
+    Cuándo lo usaste: Para poder vaciar las tablas sin que te saltaran errores de "no puedo borrar esto porque lo necesita aquello".
+
+TRUNCATE TABLE:
+
+    Qué hace: Vacía una tabla de golpe y reinicia sus IDs a 1. Es muy rápido pero peligroso (no se puede deshacer).
+
+    Cuándo lo usaste: En tu primer intento de limpieza (que falló por las claves foráneas).
+
+DELETE FROM:
+
+    Qué hace: Borra las filas de una tabla una por una. Es más lento que Truncate pero más seguro y controlado.
+
+    Cuándo lo usaste: Para limpiar las tablas respetando el orden y para la actividad 12, 13 y 14.
+
+ALTER TABLE ... AUTO_INCREMENT = 1:
+
+    Qué hace: Modifica la tabla para forzar a que el contador de IDs vuelva a empezar desde el número 1.
+
+    Cuándo lo usaste: Después de borrar los datos, para que los nuevos clientes no empezaran con el ID 21.
+
+CREATE TABLE: Crea una nueva hoja de datos.
+
+INT / DECIMAL / VARCHAR / DATE: Tipos de datos (Número entero, Número con coma, Texto, Fecha).
+
+ENUM(...): Una lista cerrada de opciones (ej: solo permite 'Casa' o 'Departamento').
+
+PRIMARY KEY: El ID único de cada fila.
+
+AUTO_INCREMENT: Generador automático de números secuenciales (1, 2, 3...).
+
+UNIQUE: Obliga a que no se repitan datos en esa columna (ej: DNI o Email).
+
+NOT NULL: Obliga a que el campo no quede vacío.
+
+FOREIGN KEY ... REFERENCES: El "ancla" que conecta una tabla hija con una tabla padre.
+INSERT INTO ... VALUES: La forma clásica. "Mete en esta tabla... estos valores exactos".
+
+INSERT INTO ... SELECT ... FROM Dual: (El Truco del Extra).
+    Qué hace: Inserta datos condicionalmente. Solo guarda si la condición del WHERE se cumple.
+
+    Dual: Una tabla imaginaria/comodín de MySQL que se usa cuando quieres probar algo o generar un dato sin leer una tabla real.
+
+SELECT: El comando base. "Muéstrame...".
+
+FROM: "...sacando los datos de esta tabla...".
+
+WHERE: "...pero solo las filas que cumplan esta condición".
+
+JOIN (Inner Join): Cruza dos tablas y muestra solo las coincidencias exactas.
+
+LEFT JOIN: Cruza dos tablas, pero si no hay coincidencia en la segunda, mantiene la primera (rellenando con nulos o ceros). Lo usaste para ver propietarios sin propiedades.
+
+ON: La condición para unir las tablas (ej: id_cliente = id_cliente).
+
+COUNT(*) o COUNT(columna): Cuenta cuántas filas hay.
+
+SUM(): Suma los valores numéricos.
+
+CASE WHEN ... THEN ... ELSE ... END:
+
+    Qué hace: Es un "Si... Entonces..." dentro de una consulta.
+
+    Cuándo lo usaste: En la alternativa de la actividad 9 ("Si hay propiedad suma 1, si no, suma 0").
+
+IS NOT NULL: Pregunta "¿Aquí hay datos?". Lo opuesto es IS NULL (¿Está vacío?).
+
+(SELECT ...) (Subconsulta): Una consulta metida dentro de otra.
+
+    Cuándo lo usaste:
+
+        En la alternativa de la act. 9 (contar propiedades fila por fila).
+
+        En el DELETE complejo (buscar los IDs de contratos viejos para borrarlos).
+
+IN (...): "Dentro de la lista". Sirve para filtrar contra varios resultados a la vez.
+
+CURDATE(): Devuelve la fecha de hoy.
+
+>=, <, >: Operadores de comparación (Mayor o igual, Menor, Mayor).

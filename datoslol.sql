@@ -1,3 +1,5 @@
+--datos y verificaciones
+
 SET FOREIGN_KEY_CHECKS=0; -- Desactiva la revisión de "enganches"
 
 TRUNCATE TABLE Pagos;
@@ -34,20 +36,7 @@ SET FOREIGN_KEY_CHECKS=1;
 
 --luego de ese truncate se uso este para vaciar las tabls por un error de ""insercion""
 
-
--- Consulta de VERIFICACIÓN:act 7 de la consulta 
--- Mostramos el cliente Y la propiedad que alquiló
-SELECT
-    cl.nombre,
-    cl.apellido,
-    p.direccion,    -- <-- Le pedimos ver la dirección
-    p.ambientes     -- <-- Le pedimos ver LA PRUEBA (los ambientes)
-FROM Clientes cl
-JOIN Contratos co ON cl.id_cliente = co.id_cliente
-JOIN Propiedades p ON co.id_propiedad = p.id_propiedad
-WHERE p.ambientes > 3;
-
---pedi otras formas de ver la misma consulats d ela act:9 
+---pedi otras formas de ver la misma consulats d ela act:9 
 SELECT 
     nombre,
     apellido,
@@ -62,7 +51,7 @@ SELECT
 FROM Propietarios pr
 LEFT JOIN Propiedades p ON pr.id_propietario = p.id_propietario
 GROUP BY pr.id_propietario, pr.nombre, pr.apellido;
---etsa utiliza el sum para sumar entre tablas
+---etsa utiliza el sum para sumar entre tablas
 
 --pedi una verificaacion para ver y compaprar los precios
 SELECT direccion, precio_alquiler 
@@ -83,4 +72,4 @@ WHERE id_pago = 16;
 SELECT * FROM Contratos 
 WHERE fecha_fin < '2024-01-01';
 
---coret
+--corte

@@ -1,4 +1,6 @@
--- creo todas las tabñas de la consigna 1 
+--creacion de la base de datos y sus datos en si 
+
+-- creo todas las tablas de la consigna 1 
 -- ya que la base principal esta y es inmobiliara
 
 
